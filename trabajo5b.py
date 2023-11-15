@@ -1,17 +1,24 @@
 from bs4 import BeautifulSoup
 import requests
 
-url="https://www.flex.scoopforwork.com/explore?page=1"	#nombre de la pagina
+def spider(id):
 
-r=requests.get(url)		#pido la pagina r es un objeto
+    url=f"https://www.flex.scoopforwork.com/explore?page={id}"	#nombre de la pagina
 
-print(r.status_code)
+    r=requests.get(url)		#pido la pagina r es un objeto
 
-soup = BeautifulSoup(r.content,"html5lib")		#transforma el html en un árbol de objetos
+    print(r.status_code)
 
-title = soup.find_all(class_="text-xl")
+    soup = BeautifulSoup(r.content,"html5lib")		#transforma el html en un árbol de objetos
 
-print(len(title))
+    title = soup.find_all(class_="text-xl")
 
-for t in title:
-    print(t.text)
+    print(len(title))
+
+    for t in title:
+        print(t.text)
+
+i=1
+
+for i in range(75):
+    spider(i)
